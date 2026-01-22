@@ -4,14 +4,16 @@ import platzi.play.contenido.Pelicula;
 import platzi.play.plataforma.Usuario;
 import platzi.play.util.ScannersUtils;
 
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Scanner;
 
 public class Main {
+
+    public static final String NOMBRE_PLATAFORMA = "PLATZI PLAY 🍿";
+    public static final String VERSION = "1.0.0";
+
     public static void main(String[] args) {
-        System.out.println("PLATZI PLAY 🍿");
+        System.out.println( NOMBRE_PLATAFORMA + " v" + VERSION);
 
         String nombre = ScannersUtils.capturarTexto("Nombre del contenido");
         String genero = ScannersUtils.capturarTexto("Genero del contenido");
