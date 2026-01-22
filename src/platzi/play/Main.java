@@ -18,6 +18,15 @@ public class Main {
         pelicula.fechaEstreno = LocalDate.of(2018,10,15);
         pelicula.genero = "Fantasia";
         pelicula.calificar(4.7);
+        pelicula.duracion = 120;
+
+        long duracionLong = pelicula.duracion;
+        System.out.println("duracionLong = " + duracionLong);
+        int calificacionInt = (int) pelicula.calificacion;
+        System.out.println("calificacionInt = " + calificacionInt);
+
+        int numeroPremios = (int) Long.parseLong("25");
+        System.out.println("numeroPremios = " + numeroPremios);
 
         //System.out.println(pelicula.obtenerFichaTecnica());
 
