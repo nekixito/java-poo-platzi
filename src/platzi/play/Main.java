@@ -25,6 +25,8 @@ public class Main {
         Plataforma plataforma = new Plataforma(NOMBRE_PLATAFORMA);
         System.out.println( NOMBRE_PLATAFORMA + " v" + VERSION);
 
+        cargarPeliculas(plataforma);
+
         while (true){
             int opcionElegiada = ScannersUtils.capturarNumero("""
                     Ingrese una de las siguientes opciones:
@@ -34,7 +36,6 @@ public class Main {
                     4. Eliminar
                     5. Salir
                     """);
-            System.out.println("Opcion elegina: " + opcionElegiada);
 
             switch (opcionElegiada){
                 case AGREGAR -> {
@@ -47,10 +48,26 @@ public class Main {
                 }
                 case MOSTRAR_TODO -> plataforma.mostrarTitulos();
                 case BUSCAR_POR_TITULO -> {
-                    //Falta
+                    String nombreBuscado = ScannersUtils.capturarTexto("Nombre del contenido a buscar");
+                    Pelicula pelicula = plataforma.buscarPorTitulo(nombreBuscado);
+
+                    if (pelicula != null){
+                        System.out.println(pelicula.obtenerFichaTecnica());
+                    }else{
+                        System.out.println(nombreBuscado + " no existe dentro de " + plataforma.getNombre());
+                    }
+
                 }
                 case ELIMINAR -> {
-                    //Falta
+                    String nombreAEliminar = ScannersUtils.capturarTexto("Nombre del contenido a eliminar");
+                    Pelicula contenido = plataforma.buscarPorTitulo(nombreAEliminar);
+
+                    if (contenido != null){
+                        plataforma.eliminar(contenido);
+                        System.out.println(nombreAEliminar + " eliminado! ");
+                    }else{
+                        System.out.println(nombreAEliminar + " no existe dentro de " + plataforma.getNombre());
+                    }
                 }
                 case SALIR -> {
                     System.exit(0);
@@ -58,26 +75,18 @@ public class Main {
             }
         }
 
-        /*
-        String nombre = ScannersUtils.capturarTexto("Nombre del contenido");
-        String genero = ScannersUtils.capturarTexto("Genero del contenido");
-        int duracion = ScannersUtils.capturarNumero("Duracion del contenido");
-        double calificacion =  ScannersUtils.capturarDecimal("Calificación del contenido");
+    }
 
-        Pelicula pelicula = new Pelicula(nombre, duracion, genero, calificacion);
-        Pelicula pelicula2 = new Pelicula("F1 the movie",220,"Accion");
-
-        plataforma.agregar(pelicula);
-        plataforma.agregar(pelicula2);
-        System.out.println("Numero de elementos en la plataforma: " + plataforma.getContenido().size());
-        plataforma.eliminar(pelicula2);
-
-        System.out.println(pelicula.obtenerFichaTecnica());
-
-        plataforma.mostrarTitulos();;
-
-        Usuario usuario = new Usuario("Miguel","miguel@mail.com");
-        usuario.ver(pelicula);
-        */
+    private static void cargarPeliculas(Plataforma plataforma){
+        plataforma.agregar(new Pelicula("Shrek", 90, "Animada"));
+        plataforma.agregar(new Pelicula("Inception", 148, "Ciencia Ficción"));
+        plataforma.agregar(new Pelicula("Titanic", 195, "Drama", 4.6));
+        plataforma.agregar(new Pelicula("John Wick", 101, "Acción"));
+        plataforma.agregar(new Pelicula("El Conjuro", 112, "Terror", 3.0));
+        plataforma.agregar(new Pelicula("Coco", 105, "Animada", 4.7));
+        plataforma.agregar(new Pelicula("Interstellar", 169, "Ciencia Ficción", 5));
+        plataforma.agregar(new Pelicula("Joker", 122, "Drama"));
+        plataforma.agregar(new Pelicula("Toy Story", 81, "Animada", 4.5));
+        plataforma.agregar(new Pelicula("Avengers: Endgame", 181, "Acción", 3.9));
     }
 }
