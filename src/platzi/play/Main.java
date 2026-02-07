@@ -7,6 +7,7 @@ import platzi.play.util.ScannersUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
 
@@ -16,8 +17,9 @@ public class Main {
     public static final int AGREGAR = 1;
     public static final int MOSTRAR_TODO = 2;
     public static final int BUSCAR_POR_TITULO = 3;
-    public static final int ELIMINAR  = 4;
-    public static final int SALIR = 5;
+    public static final int BUSCAR_POR_GENERO = 4;
+    public static final int ELIMINAR  = 8;
+    public static final int SALIR = 9;
 
 
 
@@ -33,8 +35,9 @@ public class Main {
                     1. Agregar contenido
                     2. Mostrar todo
                     3. Buscar por titulo
-                    4. Eliminar
-                    5. Salir
+                    4. Buscar por genero
+                    8. Eliminar
+                    9. Salir
                     """);
 
             switch (opcionElegiada){
@@ -56,6 +59,15 @@ public class Main {
                     }else{
                         System.out.println(nombreBuscado + " no existe dentro de " + plataforma.getNombre());
                     }
+
+                }
+                case BUSCAR_POR_GENERO -> {
+                    String generoBuscado = ScannersUtils.capturarTexto("Genero del titulo a buscar");
+                    List<Pelicula> contenidoPorGenero = plataforma.buscarPorGenero(generoBuscado);
+
+                    System.out.println(contenidoPorGenero.size() + " encontrados para el genero " + generoBuscado);
+
+                    contenidoPorGenero.forEach( contenido -> System.out.println(contenido.obtenerFichaTecnica() + "\n"));
 
                 }
                 case ELIMINAR -> {
