@@ -31,12 +31,23 @@ public class Plataforma {
     }
 
     public Pelicula buscarPorTitulo(String titulo){
+
+        return contenido.stream()
+                .filter(contenido -> contenido.getTitulo().equalsIgnoreCase(titulo))
+                .findFirst()
+                .orElse(null);
+
+
+        /*
         for (Pelicula pelicula: contenido){
             if (pelicula.getTitulo().equalsIgnoreCase(titulo)){
                 return pelicula;
             }
         }
         return null;
+        */
+
+
     }
 
     public String getNombre() {
