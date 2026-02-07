@@ -19,9 +19,11 @@ public class Plataforma {
     }
 
     public void mostrarTitulos(){
-        for (Pelicula pelicula : contenido) {
-            System.out.println(pelicula.getTitulo());
-        }
+        //for (Pelicula pelicula : contenido) {
+        //    System.out.println(pelicula.getTitulo());
+        //}
+
+        contenido.forEach(contenido -> System.out.println(contenido.getTitulo()));
     }
 
     public void eliminar(Pelicula elemento){
