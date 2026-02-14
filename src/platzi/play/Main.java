@@ -2,6 +2,7 @@ package platzi.play;
 
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
+import platzi.play.excepcion.PeliculaExistenteException;
 import platzi.play.plataforma.Plataforma;
 import platzi.play.plataforma.Usuario;
 import platzi.play.util.ScannersUtils;
@@ -48,7 +49,11 @@ public class Main {
                     int duracion = ScannersUtils.capturarNumero("Duracion del contenido");
                     double calificacion =  ScannersUtils.capturarDecimal("Calificación del contenido");
 
-                    plataforma.agregar(new Pelicula(nombre,duracion,genero,calificacion));
+                    try {
+                        plataforma.agregar(new Pelicula(nombre,duracion,genero,calificacion));
+                    } catch (PeliculaExistenteException e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
                 case MOSTRAR_TODO -> plataforma.mostrarTitulos();
                 case BUSCAR_POR_TITULO -> {
