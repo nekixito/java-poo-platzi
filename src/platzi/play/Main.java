@@ -2,6 +2,7 @@ package platzi.play;
 
 import platzi.play.contenido.Genero;
 import platzi.play.contenido.Pelicula;
+import platzi.play.contenido.ResumenContenido;
 import platzi.play.excepcion.PeliculaExistenteException;
 import platzi.play.plataforma.Plataforma;
 import platzi.play.plataforma.Usuario;
@@ -55,7 +56,12 @@ public class Main {
                         System.out.println(e.getMessage());
                     }
                 }
-                case MOSTRAR_TODO -> plataforma.mostrarTitulos();
+                case MOSTRAR_TODO -> {
+                        List<ResumenContenido> contenidosResumidos = plataforma.getResumenes();
+                        contenidosResumidos.forEach(resumen -> System.out.println(resumen.toString()));
+                }
+
+
                 case BUSCAR_POR_TITULO -> {
                     String nombreBuscado = ScannersUtils.capturarTexto("Nombre del contenido a buscar");
                     Pelicula pelicula = plataforma.buscarPorTitulo(nombreBuscado);
